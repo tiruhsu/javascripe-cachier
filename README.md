@@ -1,5 +1,7 @@
 using flask python frame 
 <br/>
+app.py manage sql and Site navigation 
+<br/>
 html in templates 
 <br/>
 have save and index
@@ -11,3 +13,4 @@ js and css Folder  introduce https://codepen.io/not0000/pen/KvvGjr is make Repub
 cashier.js is cashier logic
 <br/>
 cashier.css is cashier skin
+
