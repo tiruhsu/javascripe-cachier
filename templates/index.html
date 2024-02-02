@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="收銀機"/>
+        <meta name="author" content="tiruhsu" />
+        <meta name="keyword" content="王順弘眼科,護理師,余雅惠" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no"/>
+        <link rel="stylesheet" href="/static/cashier.css" />
+        <link rel="stylesheet" href="/static/css/bootstrap.css" />
+        <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css" />
+        
+        <title>收銀機</title>
+    </head>
+    <body>
+        <input type="text" class="word"placeholder="姓名"id="name"/>
+        <span class="word">出生年月日:</span>
+        <span><input type="text" id="datetimepicker"class="word"></span> 
+        <!--<span>出生年月日:</span>
+        <input type="date"max="0113-12-31"id="data" pattern="\d{4}-\d{2}-\d{2}" />
+        -->
+        <a href = "/save"class="word">儲存區</a>
+        <br/>
+        <h2>是否健保</h2>
+        <div class="bottenflex">
+            <button type="botten" class="botten"id="yes">是</button>
+            <button type="botten"class="botten"id="no">否</button>
+        </div>
+        <h2>初診複診</h2>
+        <div class="bottenflex">
+            <button type="botten" class="botten"id="first">初診</button>
+            <button type="botten"class="botten"id="second">複診</button>
+        </div>
+        <h2>病人種類</h2>
+        <div class="bottenflex">
+            
+            <button type="botten"class="botten"id="normal">一般身分</button>
+            <button type="botten"class="botten"id="normalglory">一般榮民</button><!--8-->
+            <button type="botten"class="botten"id="year70glory">70歲榮民</button>
+            <button type="botten"class="botten"id="year70normal">70歲長者</button>
+            <button type="botten"class="botten"id="disabled">殘障</button>
+            <button type="botten"class="botten"id="diabetes">糖檢</button><!--9-->
+            <button type="botten"class="botten"id="diabetesglory">糖檢榮民</button><!--10-->
+            <button type="botten"class="botten"id="bless">福保</button>
+            <button type="botten"class="botten"id="year3">三歲兒童</button>
+            <button type="botten"class="botten"id="ptivs">屏工</button><!--11-->
+            <button type="botten"class="botten"id="ptivsfamily">屏工眷屬</button><!--12-->
+            <button type="botten"class="botten"id="vip">VIP</button><!--13-->
+            <button type="botten"class="botten"id="familyfriend">親友</button><!--14-->
+            <button type="botten"class="botten"id="straightfamily">直系眷屬</button><!--15-->
+            <button type="botten"class="botten"id="disabledyear70glory">重大老榮</button><!--16-->
+            <button type="botten"class="botten"id="disabledyear70normal">重大老人</button><!--17-->
+            <button type="botten"class="botten"id="bigdisabled">重大傷病</button><!--18-->
+            <button type="botten"class="botten"id="other">特殊情況</button>
+        </div>    
+        <h2>費用</h2>
+        <table width="800" class="word">
+            <tr>
+                <td>掛號費</td>
+                <td>部分負擔</td>
+                <td>加收部分負擔</td>
+                <td>自費金額</td>
+                
+            </tr>
+            <tr class="word">
+                <td id="registered"></td>
+                <td id="part"></td>
+                <td id="ins"><input type="text" placeholder="加收金額" class="money" id="otherpart"/><button type="botten" style="border-radius: 10px;color: black; "id = "otherpartsure">確定</button></td>
+                <!--<td><input type="text" placeholder="自費金額" class="money" id="self"/><button type="botten" style="border-radius: 10px; color: black;" id="selfsure">確定</button></td>--><!--初診要50--><!--自費才要輸入-->
+            </tr>    
+              
+        </table>
+        <h2>科</h2>
+        <div class="bottenflex">
+        <button type="button" class="botten"id="eye">眼科</button>
+        <button type="button" class="botten"id="skin">皮膚科</button>
+        </div>
+        <br/>
+        <span id="total" class="word"></span>
+        <button type="botten" style="border-radius: 10px;" id="totalsure" class="word">確定</button>
+        <table width="1500">
+            <thead class="word">
+            <tr>
+                <td >序號</td>
+                <td >姓名</td>
+                <td >生日</td>
+                <td id="1">初診</td>
+                <td id="2">複診</td>
+                <td id="3">健保</td>
+                <td id="4">榮保</td>
+                <td id="5">福保</td>
+                <td id="6">殘障</td>
+                <td >掛號費</td>
+                <td >部分負擔</td>
+                <td >加收部分負擔</td>
+                <td >自費金額</td>
+                <td id="7">眼科</td>
+                <td id="8">皮膚科</td>
+                <td id="9">金額</td>
+            </tr>
+            <thead>
+            <tbody id="record" class="word">
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record.id }}</td>
+                        <td>{{ record.userName }}</td>
+                        <td>{{record.userBirthday}}</td>
+                        <td>{{ record.firstConsultation and '√' or '' }}</td>
+                        <td>{{ record.followUpConsultation and '√' or ''  }}</td>
+                        <td>{{record.healthInsurance and '√' or '' }}</td>
+                        <td>{{ record.honorInsurance and '√' or '' }}</td>
+                        <td>{{ record.blessingInsurance and '√' or ''  }}</td>
+                        <td>{{record.disabilityInsurance and '√' or '' }}</td>
+                        <td>{{ record.registrationFee }}</td>
+                        <td>{{ record.partialBurden}}</td>
+                        <td>{{record.additionalPartialBurden}}</td>
+                        <td>{{record.selfPaymentAmount}}</td>
+                        <td>{{ record.eyeDepartment and '√' or ''  }}</td>
+                        <td>{{ record.dermatologyDepartment and '√' or '' }}</td>
+                        <td>{{record.totalFee}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="botten" style="border-radius: 10px; color: black;"id = "delet"class="word">刪除一行</button>
+        <script src="/static/cashier.js"></script>
+        <script src="/static/js/jquery-1.12.4.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/js/bootstrap-datepicker.js"></script>
+        <script src="/static/js/locales/bootstrap-datepicker.zh-TW.min.js"></script>
+        <script>
+        $(function () {
+            $('#datetimepicker').datepicker({
+            format: "twy-mm-dd",
+            autoclose: true,
+            todayHighlight: true,
+            language: 'zh-TW'
+            });
+        });
+        </script>
+    </body>
+</html>

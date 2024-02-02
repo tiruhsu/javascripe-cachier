@@ -1,0 +1,46 @@
+.botten{
+    font-size: 30px;
+    opacity:0.8 ;
+    width: 100px; 
+    height:100px;
+    color: black ; 
+    background-color: gray;
+    border-radius: 20%;
+}
+.bottenactive{
+    font-size: 30px;
+    opacity:0.8 ;
+    width: 100px; 
+    height:100px;
+    color: black ; 
+    background-color: gray;
+    border-radius: 20%;
+    box-shadow: yellow 0px 5px 15px;
+}
+.bottenflex{
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+}
+
+.money{
+    width: 100px;
+    height:40px; 
+    font-size:20px; 
+}
+#total{
+    margin: 0px;
+    padding-left: 50px;
+    padding-right:50px ;
+    border: solid black;
+}
+
+#totalsum{
+    margin: 0px;
+    padding-left: 50px;
+    padding-right:50px ;
+    border: solid black;
+}
+.word{
+    font-size: 30px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/cashier.css" />
+    <title>儲存區</title>
+</head>
+<body>
+    <a href = "/"class="word">首頁</a>
+    <table id ="sum"class="word">
+            <thead >
+                <td >序號</td>
+                    <td >姓名</td>
+                    <td >生日</td>
+                    <td id="1">初診</td>
+                    <td id="2">複診</td>
+                    <td id="3">健保</td>
+                    <td id="4">榮保</td>
+                    <td id="5">福保</td>
+                    <td id="6">殘障</td>
+                    <td >掛號費</td>
+                    <td >部分負擔</td>
+                    <td >加收部分負擔</td>
+                    <td >自費金額</td>
+                    <td id="7">眼科</td>
+                    <td id="8">皮膚科</td>
+                    <td id="9">金額</td>
+            </thead>
+        <tbody id="record">
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.userName }}</td>
+                    <td>{{record.userBirthday}}</td>
+                    <td>{{ record.firstConsultation and '√' or '' }}</td>
+                    <td>{{ record.followUpConsultation and '√' or ''  }}</td>
+                    <td>{{record.healthInsurance and '√' or '' }}</td>
+                    <td>{{ record.honorInsurance and '√' or '' }}</td>
+                    <td>{{ record.blessingInsurance and '√' or ''  }}</td>
+                    <td>{{record.disabilityInsurance and '√' or '' }}</td>
+                    <td>{{ record.registrationFee }}</td>
+                    <td>{{ record.partialBurden}}</td>
+                    <td>{{record.additionalPartialBurden}}</td>
+                    <td>{{record.selfPaymentAmount}}</td>
+                    <td>{{ record.eyeDepartment and '√' or ''  }}</td>
+                    <td>{{ record.dermatologyDepartment and '√' or '' }}</td>
+                    <td>{{record.totalFee}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="botten" style="border-radius: 10px; color: black;"id = "delet"class="word">刪除一行</button>
+    <button type="botten" style="border-radius: 10px; color: black;"id = "deletall"class="word">全部刪除</button>
+    <h2>總金額</h2>
+    <span class="word" id="totalsum"></span>
+    <button type="botten" style="border-radius: 10px; color: black;"id = "totalsumsure"class="word">計算總金額</button>
+    <script src="/static/save.js"></script>
+</body>
+</html>
